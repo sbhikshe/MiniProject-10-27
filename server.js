@@ -27,6 +27,11 @@ app.get('/feedback', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
 );
 
+app.get('*' , (req, res) => {
+  console.log("in wildcard get");
+  res.sendFile(path.join(__dirname, '/public/pages/notfound.html'))
+});
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );

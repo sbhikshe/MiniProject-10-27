@@ -124,10 +124,21 @@ const showErrors = (errorObj) => {
 // Helper function to send a POST request to the diagnostics route (/api/diagnostics)
 const submitDiagnostics = (submissionObj) => {
   // TODO: your code here
+  console.log("Fetch request to submit diagnostic");
+  fetch('/api/diagnostics', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(submissionObj),
+  })
+    .then((response) => console.log(response));
+  /*
   console.info(
     '⚠️ Create the logic for the fetch POST request in scripts/index.js'
   );
   alert('Add your logic to scripts/index.js');
+  */
 };
 
 // Function to handle when a user submits the feedback form
@@ -150,6 +161,7 @@ const handleFormSubmit = (e) => {
 
   // Run the tip object through our validator function
   const submission = validateTip(newTip);
+  console.log("Is submission valid?" + submission.isValid);
 
   // If the submission is valid, post the tip. Otherwise, handle the errors.
   return submission.isValid ? postTip(newTip) : submitDiagnostics(submission);
